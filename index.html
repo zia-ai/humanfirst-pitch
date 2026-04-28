@@ -452,6 +452,33 @@
     70% { box-shadow: 0 0 0 14px rgba(255,170,80,0); }
     100% { box-shadow: 0 0 0 0 rgba(255,170,80,0); }
   }
+  /* SLIDE: Team */
+  .team-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: stretch; flex: 1; }
+  .team-credentials { display: flex; flex-direction: column; gap: 20px; padding-top: 4px; }
+  .team-cred-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule); }
+  .team-cred-list .item { padding: 16px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: baseline; }
+  .team-cred-list .item .k { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+  .team-cred-list .item .v { font-family: 'Instrument Serif', serif; font-size: 24px; line-height: 1.3; color: var(--ink); }
+  .team-cred-list .item .v .meta { display: block; font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.5; color: var(--ink-2); margin-top: 4px; letter-spacing: 0; }
+
+  .team-cards { display: flex; flex-direction: column; gap: 18px; justify-content: flex-start; }
+  .team-card { border: 1px solid var(--rule); padding: 22px 26px; display: flex; flex-direction: column; gap: 6px; background: var(--bg-2); }
+  .team-card .name { font-family: 'Instrument Serif', serif; font-size: 32px; line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); }
+  .team-card .role { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+  .team-card .bio { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.55; color: var(--ink-2); margin-top: 4px; }
+  .team-card .photo {
+    width: 80px; height: 80px;
+    border: 1px solid var(--rule);
+    margin-bottom: 8px;
+    background:
+      radial-gradient(circle at 30% 40%, oklch(0.78 0.16 62 / 0.18), transparent 55%),
+      radial-gradient(circle at 70% 60%, oklch(0.74 0.16 155 / 0.12), transparent 55%),
+      var(--bg);
+    position: relative;
+  }
+  .team-card .photo::after {
+    content: '';
+  }
 </style>
 </head>
 <body>
@@ -460,11 +487,11 @@
 
 
 
-  <!-- ============ 1. DEVELOPER LAYER ============ -->
-  <section data-screen-label="01 Developer Layer">
+  <!-- ============ 1. PERSONAS ============ -->
+  <section data-screen-label="01 Personas">
     <div class="stage" style="padding: 90px 140px 90px;">
       <div class="chrome">
-        <div class="row"><span>01 — The developer opportunity</span><span>HumanFirst</span></div>
+        <div class="row"><span>01 — Who's building on Supabase</span><span>HumanFirst</span></div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 28px; flex: 1; justify-content: center;">
         <div class="eyebrow reveal r1">The market</div>
@@ -474,27 +501,27 @@
         </h2>
         <div class="sor-grid reveal r3">
           <div class="sor-col">
-            <div class="sor-label" style="color: var(--ink-3);">Today, by developer type</div>
+            <div class="sor-label" style="color: var(--ink-3);">Who's building on Supabase today</div>
             <div class="sor-list-grouped">
               <div class="sor-group">
-                <div class="gname">Indie / hackers</div>
-                <div class="gtext">Chatbots, wrappers, simple RAG</div>
-                <div class="gbreak">→ Break on cost, context limits</div>
+                <div class="gname">The AI Builder</div>
+                <div class="gtext">Founder shipping an agentic product on Supabase Auth + pgvector</div>
+                <div class="gbreak">→ Demos work. Production breaks on cost &amp; reliability.</div>
               </div>
               <div class="sor-group">
-                <div class="gname">Startup teams</div>
-                <div class="gtext">AI features in products — search, copilots</div>
-                <div class="gbreak">→ Struggle with reliability + scaling usage</div>
+                <div class="gname">The Innovation Team</div>
+                <div class="gtext">Experimenting with agents on internal data + customer signal</div>
+                <div class="gbreak">→ Each prototype rebuilds context from scratch.</div>
               </div>
               <div class="sor-group">
-                <div class="gname">Growth / scale teams</div>
-                <div class="gtext">Multi-step workflows, internal tools</div>
-                <div class="gbreak">→ Logic becomes messy, expensive, non-reusable</div>
+                <div class="gname">The Enterprise Developer</div>
+                <div class="gtext">Putting agents into production over real customer + ops data</div>
+                <div class="gbreak">→ Logic isn't versioned, reusable, or auditable.</div>
               </div>
               <div class="sor-group">
-                <div class="gname">Enterprise / data teams</div>
-                <div class="gtext">High-value use cases — contracts, support, ops</div>
-                <div class="gbreak">→ Blocked by cost + lack of deterministic systems</div>
+                <div class="gname">The Data / Platform Team</div>
+                <div class="gtext">Owns the warehouse, now asked to make it agent-ready</div>
+                <div class="gbreak">→ Embeddings + RAG aren't enough at scale.</div>
               </div>
             </div>
           </div>
@@ -528,179 +555,63 @@
     </div>
   </section>
 
-  <!-- ============ 2. AI ARTIFACTS ============ -->
-  <section data-screen-label="02 AI Artifacts">
-    <div class="stage" style="padding: 100px 140px 100px;">
-      <div class="chrome">
-        <div class="row"><span>02 — A new class of data</span><span>HumanFirst</span></div>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 32px; flex: 1; justify-content: center;">
-        <div class="eyebrow reveal r1">The category</div>
-        <h2 class="serif reveal r2" style="font-size: 60px; line-height: 1.08; letter-spacing: -0.02em; margin: 0;">
-          Better context → agents that are more accurate, faster and cheaper.<br/>
-          <em style="font-style: italic; color: var(--accent); font-size: 50px;">Our claim: giving agents tools to do their own context engineering → 1000x more efficient AI.</em>
-        </h2>
-        <div class="sor-grid reveal r3">
-          <div class="sor-col">
-            <div class="sor-label" style="color: var(--ink-3);">What's new</div>
-            <ul class="sor-list">
-              <li>Not just raw data and embeddings</li>
-              <li>Structured AI artifacts — dimensions, insights, logic, outputs</li>
-              <li>Persistent, versioned, queryable context</li>
-              <li>The layer agents actually reason over</li>
-            </ul>
-          </div>
-          <div class="sor-col sor-col-mid">
-            <div class="sor-label">Why it matters for Supabase</div>
-            <ul class="sor-list">
-              <li>Makes AI-native data first-class in the backend</li>
-              <li>Extends Supabase from storage → AI execution substrate</li>
-              <li>Turns ephemeral reasoning into reusable infrastructure</li>
-            </ul>
-          </div>
-          <div class="sor-col sor-col-right">
-            <div class="sor-label">What it unlocks</div>
-            <div class="sor-list-grouped">
-              <div class="sor-group">
-                <div class="gname">Stickiness</div>
-                <div class="gtext">Applications depend on curated, evolving AI artifacts</div>
-              </div>
-              <div class="sor-group">
-                <div class="gname">New use cases</div>
-                <div class="gtext">Deterministic workflows over structured understanding</div>
-              </div>
-              <div class="sor-group">
-                <div class="gname">Massive ROI</div>
-                <div class="gtext">Context compression → orders of magnitude cost reduction. Scale data usage without scaling token costs.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sor-footer reveal r4">
-          <span class="from">The winner won't just store data —</span>
-          <span class="arrow">→</span>
-          <span class="to">it will own the context agents depend on.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 3. CODING AGENT HARNESS ANALOGY ============ -->
-  <section data-screen-label="03 Tool-Calling Analogy">
+  <!-- ============ 2. TEAM ============ -->
+  <section data-screen-label="02 Team">
     <div class="stage" style="padding: 110px 140px 110px;">
       <div class="chrome">
-        <div class="row"><span>03 — The unlock</span><span>HumanFirst</span></div>
+        <div class="row"><span>02 — Team &amp; background</span><span>HumanFirst</span></div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 28px; flex: 1; justify-content: center;">
-        <div class="eyebrow reveal r1" style="color: rgb(232, 137, 6); font-size: 34px;">→ The 1000x unlock</div>
-        <h2 class="serif reveal r2" style="font-size: 72px; line-height: 1.05; letter-spacing: -0.02em; margin: 0;">
-          Giving agents the tools to do their<br/>
-          <em style="font-style: italic; color: var(--accent);">own context engineering.</em>
+      <div style="display: flex; flex-direction: column; gap: 40px; flex: 1; justify-content: center;">
+        <div class="eyebrow reveal r1">Team &amp; background</div>
+        <h2 class="serif reveal r2" style="font-size: 56px; line-height: 1.05; letter-spacing: -0.02em; margin: 0; max-width: 24ch;">
+          Founded and led by technical founders<br/>
+          <em style="font-style: italic; color: var(--accent);">with deep enterprise AI experience.</em>
         </h2>
-        <div class="tools-grid reveal r3">
-          <div class="tools-col">
-            <div class="tools-head">
-              <div class="tools-label">Coding harness (Claude Code, Cursor, Codex etc)            +</div>
-              <div class="tools-sub">Extends the model with code and environment execution tools</div>
-            </div>
-            <div class="tools-block">
-              <div class="tools-block-label">Tools</div>
-              <ul class="tools-list">
-                <li>Use the terminal</li>
-                <li>Browse / search the file system</li>
-                <li>Read / write files</li>
-                <li>Run code &amp; manage dependencies</li>
-              </ul>
-            </div>
-          </div>
-          <div class="tools-col tools-col-right">
-            <div class="tools-head">
-              <div class="tools-label tools-label-accent">Context Engineering MCP</div>
-              <div class="tools-sub">Extends the model with data + context engineering tools</div>
-            </div>
-            <div class="tools-block">
-              <div class="tools-block-label">Tools</div>
-              <ul class="tools-list tools-list-accent">
-                <li>Read / write semantic dimensions</li>
-                <li>Query / search data via hybrid (semantic, full-text) </li>
-                <li>Extract, structure, refine artifacts</li>
-                <li>Run iteration loops &amp; manage lineage</li>
-              </ul>
+        <div class="team-grid reveal r3">
+          <div class="team-credentials">
+            <div class="team-cred-list">
+              <div class="item">
+                <div class="k">Previous exit</div>
+                <div class="v">PasswordBox → acquired by Intel
+                  <span class="meta">Co-founders filed 5 patents and led a 120+ engineering org post-exit.</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="k">Today's team</div>
+                <div class="v">8-person team
+                  <span class="meta">Primarily senior product &amp; engineering. No layers between builders and customers.</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="k">What we're known for</div>
+                <div class="v">Enterprise AI alignment
+                  <span class="meta">Multi-year focus on the hardest part of agents: making them work on real, messy enterprise data.</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="tools-punchline reveal r4">
-          <div><span class="arrow">→</span>Code tools build agents that <strong style="font-weight: 500; color: var(--ink);">execute.</strong></div>
-          <div><span class="arrow" style="color: var(--accent);">→</span>Context tools build agents that <strong style="font-weight: 500;">learn and improve judgment.</strong></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 4. CLOSING — SUPABASE'S PATH ============ -->
-  <section data-screen-label="04 Supabase's Path">
-    <div class="stage" style="padding: 90px 140px 90px;">
-      <div class="chrome">
-        <div class="row"><span>04 — The bigger picture</span><span>HumanFirst</span></div>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 32px; flex: 1; justify-content: center;">
-        <div class="eyebrow reveal r1">The bigger picture</div>
-        <h2 class="serif reveal r2" style="font-size: 84px; line-height: 1.0; letter-spacing: -0.02em; margin: 0;">
-          Supabase + <em style="font-style: italic; color: var(--accent);">HumanFirst</em>
-        </h2>
-
-        <div class="path-timeline reveal r3">
-          <div class="path-step is-now">
-            <div class="when">Today</div>
-            <div class="what">System of record for <strong style="font-weight: 500;">application data</strong>.</div>
-            <div class="arrow">→</div>
-          </div>
-          <div class="path-step is-next">
-            <div class="when">Next</div>
-            <div class="what">System of record for <em>context + AI artifacts</em>.</div>
-            <div class="arrow">→</div>
-          </div>
-          <div class="path-step is-future">
-            <div class="when">Future</div>
-            <div class="what">Backbone for context engineering at scale.</div>
-          </div>
-        </div>
-
-        <div class="path-pair reveal r4">
-          <div>
-            <div class="sor-label">Why this matters</div>
-            <ul class="sor-list">
-              <li>Every AI application depends on context</li>
-              <li>Context is currently ephemeral, expensive, non-reusable</li>
-              <li>
-</li>
-            </ul>
-          </div>
-          <div>
-            <div class="sor-label" style="color: var(--accent);">What this does for Supabase</div>
-            <ul class="sor-list">
-              <li>Owning the control plane for AI context means owning how AI systems are built</li>
-              <li>Our team accelerates the vision of Supabase being the default backend for agent-native applications.</li>
-              <li>
-</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="path-final reveal r5">
-          <div style="font-style: italic;">
-            
+          <div class="team-cards">
+            <div class="team-card">
+              <div class="role">CEO, Co-Founder</div>
+              <div class="name">Gregory Whiteside</div>
+              <div class="bio">Repeat founder. Drives the product vision for HumanFirst as the context layer for AI-native data.</div>
+            </div>
+            <div class="team-card">
+              <div class="role">CTO, Co-Founder</div>
+              <div class="name">Mathieu Rene</div>
+              <div class="bio">Architect of the artifact &amp; semantic-dimension model. Led the engineering org through PasswordBox's exit to Intel.</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 5. THREE PILLARS OVERVIEW ============ -->
-  <section data-screen-label="05 Three Pillars">
+  <!-- ============ 3. THREE PILLARS OVERVIEW ============ -->
+  <section data-screen-label="03 Three Pillars">
     <div class="stage">
       <div class="chrome">
-        <div class="row"><span>05 — What we've built</span><span>HumanFirst</span></div>
+        <div class="row"><span>03 — What we've built</span><span>HumanFirst</span></div>
       </div>
       <div class="eyebrow reveal r1">What we've built</div>
       <h2 class="section-title reveal r2" style="margin-top: 32px; max-width: 22ch; font-size: 86px; width: 1270.32px">
@@ -817,6 +728,122 @@
               </g>
               <text x="14" y="178" fill="#6f6a60" font-family="JetBrains Mono" font-size="9" letter-spacing="1">LOOP</text>
             </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. WHAT HUMANFIRST BRINGS TO SUPABASE ============ -->
+  <section data-screen-label="04 What HumanFirst Brings">
+    <div class="stage" style="padding: 100px 140px 100px;">
+      <div class="chrome">
+        <div class="row"><span>04 — What HumanFirst brings to Supabase</span><span>HumanFirst</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 32px; flex: 1; justify-content: center;">
+        <div class="eyebrow reveal r1">What HumanFirst brings to Supabase</div>
+        <h2 class="serif reveal r2" style="font-size: 60px; line-height: 1.08; letter-spacing: -0.02em; margin: 0;">
+          Better context → agents that are more accurate, faster and cheaper.<br/>
+          <em style="font-style: italic; color: var(--accent); font-size: 50px;">A new layer for the data agents create, depend on, and reuse.</em>
+        </h2>
+        <div class="sor-grid reveal r3">
+          <div class="sor-col">
+            <div class="sor-label" style="color: var(--ink-3);">What's new</div>
+            <ul class="sor-list">
+              <li>Not just raw data and embeddings</li>
+              <li>Structured AI artifacts — dimensions, insights, logic, outputs</li>
+              <li>Persistent, versioned, queryable context</li>
+              <li>The layer agents actually reason over</li>
+            </ul>
+          </div>
+          <div class="sor-col sor-col-mid">
+            <div class="sor-label">Why it matters for Supabase</div>
+            <ul class="sor-list">
+              <li>Makes AI-native data first-class in the backend</li>
+              <li>Extends Supabase from storage → AI execution substrate</li>
+              <li>Turns ephemeral reasoning into reusable infrastructure</li>
+            </ul>
+          </div>
+          <div class="sor-col sor-col-right">
+            <div class="sor-label">What it unlocks</div>
+            <div class="sor-list-grouped">
+              <div class="sor-group">
+                <div class="gname">Stickiness</div>
+                <div class="gtext">Applications depend on curated, evolving AI artifacts</div>
+              </div>
+              <div class="sor-group">
+                <div class="gname">New use cases</div>
+                <div class="gtext">Deterministic workflows over structured understanding</div>
+              </div>
+              <div class="sor-group">
+                <div class="gname">Massive ROI</div>
+                <div class="gtext">Context compression → orders of magnitude cost reduction. Scale data usage without scaling token costs.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sor-footer reveal r4">
+          <span class="from">The winner won't just store data —</span>
+          <span class="arrow">→</span>
+          <span class="to">it will own the context agents depend on.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. SUPABASE + HUMANFIRST ============ -->
+  <section data-screen-label="05 Supabase + HumanFirst">
+    <div class="stage" style="padding: 90px 140px 90px;">
+      <div class="chrome">
+        <div class="row"><span>05 — Supabase + HumanFirst</span><span>HumanFirst</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 32px; flex: 1; justify-content: center;">
+        <div class="eyebrow reveal r1">The bigger picture</div>
+        <h2 class="serif reveal r2" style="font-size: 84px; line-height: 1.0; letter-spacing: -0.02em; margin: 0;">
+          Supabase + <em style="font-style: italic; color: var(--accent);">HumanFirst</em>
+        </h2>
+
+        <div class="path-timeline reveal r3">
+          <div class="path-step is-now">
+            <div class="when">Today</div>
+            <div class="what">System of record for <strong style="font-weight: 500;">application data</strong>.</div>
+            <div class="arrow">→</div>
+          </div>
+          <div class="path-step is-next">
+            <div class="when">Next</div>
+            <div class="what">System of record for <em>context + AI artifacts</em>.</div>
+            <div class="arrow">→</div>
+          </div>
+          <div class="path-step is-future">
+            <div class="when">Future</div>
+            <div class="what">Backbone for context engineering at scale.</div>
+          </div>
+        </div>
+
+        <div class="path-pair reveal r4">
+          <div>
+            <div class="sor-label">Why this matters</div>
+            <ul class="sor-list">
+              <li>Every AI application depends on context</li>
+              <li>Context is currently ephemeral, expensive, non-reusable</li>
+              <li>
+</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sor-label" style="color: var(--accent);">What this does for Supabase</div>
+            <ul class="sor-list">
+              <li>Owning the control plane for AI context means owning how AI systems are built</li>
+              <li>Our team accelerates the vision of Supabase being the default backend for agent-native applications.</li>
+              <li>
+</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="path-final reveal r5">
+          <div style="font-style: italic;">
+            
           </div>
         </div>
       </div>
