@@ -1,0 +1,54 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main, zapier]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-content
+
+      - name: Checkout zapier
+        uses: actions/checkout@v4
+        with:
+          ref: zapier
+          path: zapier-content
+
+      - name: Assemble site
+        run: |
+          mkdir -p site
+          cp -r main-content/. site/
+          rm -rf site/.git site/.github
+          mkdir -p site/zapier
+          cp -r zapier-content/. site/zapier/
+          rm -rf site/zapier/.git site/zapier/.github
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
